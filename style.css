@@ -15,6 +15,19 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* screen reader only */
+.sr-olny {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 main.container {
   width: min(90vw, 800px);
   margin: 30px auto;
@@ -56,13 +69,16 @@ header h1#logo {
   background-color: var(--color-white);
   padding: 1.5rem 2rem;
   border-radius: .25rem;
-  margin-bottom: 1.5rem;
-  color: var(--dark-blue);
+  margin-bottom: 1.5rem; 
+  color: var(--dark-blue)
 }
 
 .card h3 {
   font-weight: normal;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .card p {
