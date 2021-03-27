@@ -33,14 +33,27 @@ main.container {
   margin: 30px auto;
 }
 
-/* Titles ============ */
+/* Titles =================== */
 h2 {
   margin-top: 3.2rem;
   margin-bottom: 0.8rem;
   color: var(--dark-blue);
   font-weight: normal;
 }
+/* Links and buttons ======== */
+a{
+  text-decoration: none;
+  color: #49AA26;
+}
 
+a:hover{
+  color: #3DD705;
+}
+
+.button.new {
+  display: inline-block;
+  margin-bottom: .8rem;
+}
 
 /* Header ============ */
 header {
