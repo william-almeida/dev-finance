@@ -7,7 +7,7 @@ const Modal = {
   }
 }
 
-// array of transactions
+// DATABASE =======
 const transactions = [
   {
     id: 1,
@@ -16,44 +16,59 @@ const transactions = [
     date: '30/05/2021'
   },
   {
-    id: 1,
+    id: 3,
     description: 'Website',
     amount: 500000,
     date: '30/05/2021'
   },
   {
-    id: 1,
+    id: 3,
     description: 'Internet',
     amount: -15000,
     date: '30/05/2021'
   },
   {
-    id: 1,
+    id: 4,
     description: 'Nerd ao Cubo',
     amount: -8000,
+    date: '30/05/2021'
+  },
+  {
+    id: 5,
+    description: 'Consultoria',
+    amount: 20000,
     date: '30/05/2021'
   }
 ]
 
 const Transaction = {
+  all: transactions,
+
+  add(transaction){
+    Transaction.all.push(transaction)
+    App.reload()
+  },
+
   incomes() {
     let income = 0
-    transactions.forEach(transaction => {
+    Transaction.all.forEach(transaction => {
       if (transaction.amount > 0) {
         income += transaction.amount;
       }
     })
     return income
   },
+
   expenses() {
     let expense = 0
-    transactions.forEach(transaction => {
+    Transaction.all.forEach(transaction => {
       if (transaction.amount < 0) {
         expense += transaction.amount;
       }
     })
     return expense
   },
+
   total() {
     return Transaction.incomes() + Transaction.expenses()
   }
@@ -101,6 +116,10 @@ const DOM = {
         Transaction.total()
       )
 
+  },
+
+  clearTransaction() {
+    DOM.transactionsContainer.innerHTML = ''
   }
 }
 
@@ -119,9 +138,26 @@ const Utils = {
   }
 }
 
-// para cada elemento da lista
-transactions.forEach(function(transaction){
-  DOM.addTansaction(transaction)
-})
+const App = {
+  init() {
+    Transaction.all.forEach(transaction => {
+      DOM.addTansaction(transaction)
+    })
+    
+    DOM.updateBalance()
+  },
+  reload() {
+    DOM.clearTransaction()
+    App.init()
 
-DOM.updateBalance()
+  }
+}
+
+App.init()
+
+Transaction.add({
+  id: 7,
+  description: 'festa',
+  amount: -45000,
+  date: '25/03/2021'
+})
