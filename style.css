@@ -190,6 +190,19 @@ table td {
   padding: 1rem 2rem;
 }
 
+td.description {
+  color: var(--dark-blue);
+}
+
+td.expense {
+  color: var(--color-red);
+}
+
+td.income {
+  color: var(--color-green);
+}
+
+
 /* Modal ===================== */
 
 .modal-overlay {
