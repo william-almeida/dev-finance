@@ -37,23 +37,37 @@ const transactions = [
 
 const Transaction = {
   incomes() {
-    // somar as entradas
+    let income = 0
+    transactions.forEach(transaction => {
+      if (transaction.amount > 0) {
+        income += transaction.amount;
+      }
+    })
+    return income
   },
   expenses() {
-    // somar as saídas
+    let expense = 0
+    transactions.forEach(transaction => {
+      if (transaction.amount < 0) {
+        expense += transaction.amount;
+      }
+    })
+    return expense
   },
   total() {
-    // diferença das entradas e saídas
+    return Transaction.incomes() + Transaction.expenses()
   }
 }
 
 const DOM = {
   transactionsContainer: document.querySelector('#data-table tbody'),
+  
   addTansaction(transaction, index) {
     const tr = document.createElement('tr')
     tr.innerHTML = DOM.innerHTMLTransaction(transaction)
     DOM.transactionsContainer.appendChild(tr)
   },
+
   innerHTMLTransaction(transaction) {
     const CSSclass = transaction.amount > 0 ? "income" : "expense"
     const amount = Utils.formatCurrency(transaction.amount)
@@ -66,6 +80,27 @@ const DOM = {
       </td>
     `
     return html
+  },
+
+  updateBalance() {
+    document
+      .getElementById('incomeDisplay')
+      .innerHTML = Utils.formatCurrency(
+        Transaction.incomes()
+      )
+    
+    document
+      .getElementById('expenseDisplay')
+      .innerHTML = Utils.formatCurrency(
+        Transaction.expenses()
+      )
+    
+    document
+      .getElementById('totalDisplay')
+      .innerHTML =  Utils.formatCurrency(
+        Transaction.total()
+      )
+
   }
 }
 
@@ -88,3 +123,5 @@ const Utils = {
 transactions.forEach(function(transaction){
   DOM.addTansaction(transaction)
 })
+
+DOM.updateBalance()
