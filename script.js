@@ -48,7 +48,10 @@ const Transaction = {
     Transaction.all.push(transaction)
     App.reload()
   },
-
+  remove(index) {
+    Transaction.all.splice(index, 1)
+    App.reload()
+  },
   incomes() {
     let income = 0
     Transaction.all.forEach(transaction => {
@@ -161,3 +164,5 @@ Transaction.add({
   amount: -45000,
   date: '25/03/2021'
 })
+
+Transaction.remove(1)
