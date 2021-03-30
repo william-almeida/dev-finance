@@ -142,6 +142,10 @@ header h1#logo {
   margin-top: 1rem;
 }
 
+.card p#expenseDisplay{
+  color: var(--color-red);
+
+}
 .card.green {
   background-color: var(--color-green);
   color: var(--color-white);
