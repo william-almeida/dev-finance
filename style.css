@@ -16,8 +16,7 @@
 }
 
 html {
-  font-size: 93.75%;
-
+  font-size: 87.5%;
 }
 
 body {
@@ -142,10 +141,6 @@ header h1#logo {
   margin-top: 1rem;
 }
 
-.card p#expenseDisplay{
-  color: var(--color-red);
-
-}
 .card.green {
   background-color: var(--color-green);
   color: var(--color-white);
@@ -224,6 +219,8 @@ td.income {
 
   opacity: 0;
   visibility: hidden;
+
+  z-index: 100;
 }
 
 .modal-overlay.active {
@@ -233,11 +230,13 @@ td.income {
 
 .modal {
   background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  
   padding: 2.4rem;
   position: relative;
-  border-radius: var(--border-radius);
   width: 90%;
-  max-width: 500px;  
+  max-width: 500px;
+  z-index: 100;
 }
 
 /* form ====================== */
@@ -283,7 +282,14 @@ td.income {
 
 /* Footer ==================== */
 footer {
+  color: var(--dark-blue);
+  opacity: 0.8;
   text-align: center;
+  margin-bottom: 2rem;
+}
+
+footer a#creators:hover {
+  color: #8257e6;
 }
 
 /* Responsive ================ */
@@ -291,7 +297,7 @@ footer {
 @media (min-width: 800px) {
   
   html {
-    font-size: 87.5%;
+    font-size: 93.75%;
   }
 
   #balance {
