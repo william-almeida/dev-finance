@@ -7,42 +7,39 @@ const Modal = {
   }
 }
 
-// DATABASE =======
-const transactions = [
-  {
-    id: 1,
-    description: 'Luz',
-    amount: -50000,
-    date: '30/05/2021'
-  },
-  {
-    id: 3,
-    description: 'Website',
-    amount: 500000,
-    date: '30/05/2021'
-  },
-  {
-    id: 3,
-    description: 'Internet',
-    amount: -15000,
-    date: '30/05/2021'
-  },
-  {
-    id: 4,
-    description: 'Nerd ao Cubo',
-    amount: -8000,
-    date: '30/05/2021'
-  },
-  {
-    id: 5,
-    description: 'Consultoria',
-    amount: 20000,
-    date: '30/05/2021'
-  }
-]
-
 const Transaction = {
-  all: transactions,
+  all: [
+    {
+      id: 1,
+      description: 'Luz',
+      amount: -50000,
+      date: '30/05/2021'
+    },
+    {
+      id: 3,
+      description: 'Website',
+      amount: 500000,
+      date: '30/05/2021'
+    },
+    {
+      id: 3,
+      description: 'Internet',
+      amount: -15000,
+      date: '30/05/2021'
+    },
+    {
+      id: 4,
+      description: 'Nerd ao Cubo',
+      amount: -8000,
+      date: '30/05/2021'
+    },
+    {
+      id: 5,
+      description: 'Consultoria',
+      amount: 20000,
+      date: '30/05/2021'
+    }
+  ],
 
   add(transaction){
     Transaction.all.push(transaction)
@@ -138,6 +135,50 @@ const Utils = {
 
     return signal + value
     
+  }
+}
+
+const Form = {
+
+  description: document.querySelector('input#description'),
+  amount: document.querySelector('input#amount'),
+  date: document.querySelector('input#date'),
+
+  getValues() {
+    return {
+      description: Form.description.value,
+      amount: Form.amount.value,
+      date: Form.date.value
+    }
+  },
+
+  validateFields() {
+    const { description, amount, date } = Form.getValues()
+    if (
+      // .trim() method remove os espços das 'pontas' de uma string
+      description.trim() === "" ||
+      amount.trim() === "" ||
+      date.trim() === "" 
+    ){
+      // Thorw: jogar, lançar, atirar
+      throw new Error("Por, favor preencha todos os campos")
+    }
+  },
+
+  submit(event){
+    try {
+      Form.validateFields()
+    } catch (error) {
+      alert(error.message)
+    }
+
+    event.preventDefault()
+    // verefificar se os campos estção preenchidos
+    // formatar os dados
+    // salvar
+    // limpar os campos
+    // close modal
+    // update app
   }
 }
 
